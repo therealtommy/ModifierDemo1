@@ -22,6 +22,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +51,7 @@ fun DemoScreen(modifier: Modifier = Modifier) {
     val mymodifier = modifier
         .padding(all = 10.dp)
         .border(width = 2.dp, color = Color.Black)
+    val secondModifier = Modifier.height(100.dp)
     Column(
         Modifier.padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -56,12 +59,17 @@ fun DemoScreen(modifier: Modifier = Modifier) {
     ) {
         Text(
             "Hello Compose",
-            mymodifier,
+            mymodifier.then(secondModifier),
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold
         )
         Spacer(Modifier.height(16.dp))
-        CustomImage(R.drawable.giphy3)
+        CustomImage(R.drawable.giphy3,
+        Modifier
+            .padding(16.dp)
+            .width(270.dp)
+            .clip(shape = RoundedCornerShape(150.dp))
+        )
     }
 }
 
